@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<% if @is_following %>
+<%= button_to 'Unfollow User', unfollow_user_path(@user), method: :delete %>
+<% else %>
+<%= button_to 'Follow User', follow_user_path(@user), method: :post%>
+<% end %>
+
+<p>
+  <strong>Username:</strong>
+  <%= @user.username %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @user.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @user.last_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @user.password %>
+</p>
+
+<% if @user.id == @current_user.id %>
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<% end %>
+<%= link_to 'Back', users_path %>
+
+<h3>Posts: </h3>
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th colspan="3">Created at</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.content %></td>
+        <td><%= post.created_at %> </td>
+        <td><%= link_to 'Show', post %></td>
+        <% if post.user_id == @current_user.id %>
+        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

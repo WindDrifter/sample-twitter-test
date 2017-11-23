@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>SimpleTwitter</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= link_to 'Home Page', root_path %>
+    <% if @current_user %>
+    <%= link_to 'Logout', signout_path, method: :delete %>
+    <% else %>
+    <%= link_to 'login', signin_path %>
+    <%= link_to 'signup', signup_path %>
+    <% end %>
+    <%= link_to 'Posts', posts_path %>
+    <%= link_to 'Users', users_path %>
+
+    <%= yield %>
+
+  </body>
+</html>
