@@ -8,7 +8,11 @@ class ApplicationController < ActionController::Base
     end
   end
   def is_owner(provided_user_id)
-    return provided_user_id==@current_user.id
+    if @current_user
+      return provided_user_id==@current_user.id
+    else
+      return false
+    end
   end
 
   def is_login
