@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :required_login, except: [:index]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :check_owner, only: [:edit, :update, :destroy]
   # GET /posts

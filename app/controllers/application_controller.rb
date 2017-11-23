@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   before_action :current_user
 
   def required_login
-    if not session[:user_id]
-      redirect_to signin_path
+    if not @current_user
+      redirect_to signin_path, alert: "Please login first"
     end
   end
   def is_owner(provided_user_id)
